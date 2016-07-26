@@ -27,5 +27,22 @@ namespace MonsterTraining
         {
             Console.WriteLine(message);
         }
+
+        public static int Menu(string message, string[] items)
+        {
+            Console.WriteLine(message);
+
+            int i = 1;
+            foreach (string item in items)
+            {
+                Console.WriteLine("{0}) {1}", i, item);
+                i++;
+            }
+
+            Console.Write("\nChoose a number from the list:");
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            return choice;
+        }
     }
 }
