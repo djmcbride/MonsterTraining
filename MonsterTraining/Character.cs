@@ -11,13 +11,18 @@ namespace MonsterTraining
         public string Name { get; set; }
         //Todo: Figure out how to create an enum that you can get/set
         //enum Gender { Male, Female, None }
-        protected int HP { get; set; }
-        protected int Str { get; set; }
-        protected int Vit { get; set; }
-        protected int Dex { get; set; }
-        protected int Agi { get; set; }
-        protected int Mind { get; set; }
-        protected int Per { get; set; }
+        public int HP { get; set; }
+        public int Str { get; set; }
+        public int Vit { get; set; }
+        public int Dex { get; set; }
+        public int Agi { get; set; }
+        public int Mind { get; set; }
+        public int Per { get; set; }
+
+        public virtual void ReceiveAttack(Attack attack)
+        {
+
+        }
 
         public virtual void TakeDamage(int damage)
         {
@@ -26,7 +31,7 @@ namespace MonsterTraining
 
         public virtual void GetHP()
         {
-            UIUpdate.Message(HP);
+            UIUpdate.ShowHP("{0} has {1} HP", this.Name, HP);
         }
 
         //public abstract void AttackTarget();

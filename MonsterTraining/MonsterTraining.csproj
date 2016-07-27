@@ -44,7 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attack.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="EnumMenu.cs" />
+    <Compile Include="Technique.cs" />
     <Compile Include="UIUpdate.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="Program.cs" />

@@ -39,10 +39,15 @@ namespace MonsterTraining
                 i++;
             }
 
-            Console.Write("\nChoose a number from the list:");
+            Console.Write("\nEnter a number from the list:");
             int choice = Convert.ToInt32(Console.ReadLine());
 
             return choice;
+        }
+
+        internal static void ShowHP(string message, string name, int hp)
+        {
+            Console.WriteLine(message,name,hp);
         }
     }
 }
