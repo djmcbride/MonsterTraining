@@ -44,12 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attack.cs" />
-    <Compile Include="Character.cs" />
-    <Compile Include="EnumMenu.cs" />
     <Compile Include="Technique.cs" />
-    <Compile Include="UIUpdate.cs" />
-    <Compile Include="Monster.cs" />
+    <None Include="Attack.cs.old" />
+    <None Include="Character.cs.old" />
+    <None Include="EnumMenu.cs.old" />
+    <None Include="Technique.cs.old" />
+    <None Include="UIUpdate.cs.old" />
+    <None Include="Monster.cs.old" />
+    <None Include="Program.cs.old" />
+    <Compile Include="Character.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
