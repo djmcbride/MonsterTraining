@@ -6,39 +6,23 @@ using System.Threading.Tasks;
 
 namespace MonsterTraining
 {
-    public class CharacterDictionary
+    public class Character
     {
         //Constructor
-        public CharacterDictionary(string name, string description, Dictionary<string, int> baseStats)
+        //public Character(string name, string description, Dictionary<string, int> leafStats) //DICTIONARY IMPLEMENTATION
+        public Character(string name, string description, int[] baseStats)
         {
             Name = name;
             Description = description;
-            Stats = new Dictionary<string, int>(baseStats);
-
-            //Calculates branch stats based off of leaf stats
-            Stats.Add("Defence", CalculateDefence(Stats["PhysicalDefence"], Stats["MentalDefence"]));
-            Stats.Add("Vision", CalculateVision(Stats["PeripheralVision"], Stats["MainVision"]));
-            Stats.Add("Sense", CalculateSense(Stats["PresenceSense"], Stats["TargetSense"]));
-            Stats.Add("LearningRate", CalculateLearningRate(Stats["TaughtLearning"], Stats["NaturalLearning"]));
-
-            //Calculates root stats based off of leaf stats and branch stats
-            Stats.Add("Strength", CalculateStrength(Stats["MeleeStrength"], Stats["BlockStrength"]));
-            Stats.Add("Vitality", CalculateVitality(Stats["MaxMentalStamina"], Stats["MaxPhysicalStamina"], Stats["Defence"]));
-            Stats.Add("Agility", CalculateAgility(Stats["TopSpeed"], Stats["Acceleration"], Stats["AttackSpeed"]));
-            Stats.Add("Dexterity", CalculateDexterity(Stats["MovementAccuracy"], Stats["DodgeAbility"], Stats["DamageConsistancy"], Stats["TechniqueAccuracy"]));
-            Stats.Add("Perception", CalculatePerception(Stats["Vision"], Stats["Hearing"], Stats["Sense"]));
-            Stats.Add("Mind", CalculateMind(Stats["MentalStrength"], Stats["LearningRate"], Stats["PathFinding"]));
-
+            Stats = baseStats;
+            CalculateStats(Stats);
         }
 
-        
-
         /*Fields*/
-        //details
         public string Name;
         public string Description;
         //Gender;
-        public Dictionary<string, int> Stats; //DICTIONARY IMPLEMENTATION
+        public int[] Stats;
 
         /*Subroutines*/
         public void UseTechnique(Technique technique)
@@ -57,6 +41,20 @@ namespace MonsterTraining
         }
 
         //Calculate Stats
+        private void CalculateStats(int[] Stats)
+        {
+            Stats[StatList.Defence] = CalculateDefence(Stats[StatList.PhysicalDefence], Stats[StatList.MentalDefence]);
+            Stats[StatList.Vision] = CalculateVision(Stats[StatList.PeripheralVision], Stats[StatList.MainVision]);
+            Stats[StatList.Sense] = CalculateSense(Stats[StatList.PresenceSense], Stats[StatList.TargetSense]);
+            Stats[StatList.LearningRate] = CalculateLearningRate(Stats[StatList.NaturalLearning], Stats[StatList.TaughtLearning]);
+            Stats[StatList.Strength] = CalculateStrength(Stats[StatList.MeleeStrength], Stats[StatList.BlockStrength]);
+            Stats[StatList.Vitality] = CalculateVitality(Stats[StatList.MaxMentalStamina], Stats[StatList.MaxPhysicalStamina], Stats[StatList.Defence]);
+            Stats[StatList.Agility] = CalculateAgility(Stats[StatList.TopSpeed], Stats[StatList.Acceleration], Stats[StatList.AttackSpeed]);
+            Stats[StatList.Dexterity] = CalculateDexterity(Stats[StatList.MovementAccuracy], Stats[StatList.DodgeAbility], Stats[StatList.DamageConsistancy], Stats[StatList.TechniqueAccuracy]);
+            Stats[StatList.Perception] = CalculatePerception(Stats[StatList.Vision], Stats[StatList.Hearing], Stats[StatList.Strength]);
+            Stats[StatList.Mind] = CalculateMind(Stats[StatList.MentalStrength], Stats[StatList.LearningRate], Stats[StatList.PathFinding]);
+        }
+
         private int CalculateMind(int MentalStrength, int LearningRate, int PathFinding)
         {
             return (MentalStrength + LearningRate + PathFinding) / 3;

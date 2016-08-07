@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MonsterTraining
 {
-    public static class CharacterStats
+    public static class StatList
     {
         public const int SlashDefence = 0;
         public const int PiercingDefence = 1;

@@ -44,13 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacterDectionary.cs" />
-    <Compile Include="CharacterConstants.cs" />
+    <Compile Include="Character.cs" />
     <Compile Include="CharacterStats.cs" />
-    <Compile Include="EStats.cs" />
     <Compile Include="StatusEffect.cs" />
     <Compile Include="Technique.cs" />
-    <Compile Include="CharacterEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
