@@ -6,13 +6,22 @@ using System.Threading.Tasks;
 
 namespace MonsterTraining
 {
-    public abstract class Technique
+    public class Technique
     {
-        public string Name { get; set; }
-        protected string Description { get; set; }
-        public Character TechniqueSource { get; set; }
-        public Character TechniqueTarget { get; set; }
-        protected int damageCalc;
-        
+        public Technique()
+        {
+
+        }
+
+        public int calculateDamage()
+        {
+            int TotalDamage = 0;
+            return TotalDamage;
+        }
+
+        public void dealDamage()
+        {
+
+        }
     }
 }

@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 
 namespace MonsterTraining
 {
-    class Monster : Character
+    public class Monster : Character
     {
-        public Monster(string name = "No Name")
+        public Monster(string name, string description, int[] affinities, int[] trainingPoints) : base(name, description, affinities, trainingPoints)
         {
-            Name = name;
-            HP = 100;
-            Str = 10;
-            Vit = 10;
-            Dex = 10;
-            Agi = 10;
-            Mind = 10;
-            Per = 10;
+        }
+
+        public Monster(string name, string description, int[] affinities, int[] trainingPoints, Trainer trainer) : base(name, description, affinities, trainingPoints)
+        {
+            AssignedTrainer = trainer;
+        }
+        Trainer AssignedTrainer;
+
+        //Sub-routines
+        public void AssignTrainer(Trainer trainer)
+        {
+            AssignedTrainer = trainer;
         }
     }
 }
