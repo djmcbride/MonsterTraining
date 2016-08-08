@@ -67,6 +67,7 @@ namespace MonsterTraining.Tests
             stats[StatList.Hearing] = 0;
             stats[StatList.PresenceSense] = 0;
             stats[StatList.TargetSense] = 0;
+            stats[StatList.CriticalHitChance] = 0;
         }
     }
 }

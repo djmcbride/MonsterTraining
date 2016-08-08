@@ -54,6 +54,13 @@ namespace MonsterTraining
             Stats[StatList.Dexterity] = CalculateDexterity(Stats[StatList.MovementAccuracy], Stats[StatList.DodgeAbility], Stats[StatList.DamageConsistancy], Stats[StatList.TechniqueAccuracy]);
             Stats[StatList.Perception] = CalculatePerception(Stats[StatList.Vision], Stats[StatList.Hearing], Stats[StatList.Strength]);
             Stats[StatList.Mind] = CalculateMind(Stats[StatList.MentalStrength], Stats[StatList.LearningRate], Stats[StatList.PathFinding]);
+            //Critical chance is based off of two base stats (dexterity and perception)
+            Stats[StatList.CriticalHitChance] = CalculateCriticalHitChance(Stats[StatList.Dexterity], Stats[StatList.Perception]);
+        }
+
+        private int CalculateCriticalHitChance(int dexterity, int perception)
+        {
+            return (dexterity + perception) / 4;
         }
 
         private int CalculateMind(int MentalStrength, int LearningRate, int PathFinding)
