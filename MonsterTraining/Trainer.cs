@@ -10,8 +10,8 @@ namespace MonsterTraining
     {
         public Trainer(string name, string description, int[] stats) : base(name, description, stats)
         {
-            Monsters = new Character[6];
+            Monsters = new Monster[6];
         }
-        public Character[] Monsters;
+        public Monster [] Monsters;
     }
 }

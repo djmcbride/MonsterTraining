@@ -19,10 +19,11 @@ namespace MonsterTraining
         }
 
         /*Fields*/
-        public string Name;
-        public string Description;
-        //Gender;
-        public int[] Stats;
+        public string Name { get; set; }
+        public string Description { get; set; }
+//Gender;
+        public int[] Stats { get; set; }
+        
 
         /*Subroutines*/
         public void UseTechnique(Technique technique)

@@ -10,18 +10,27 @@ namespace MonsterTraining.Tests
         [TestMethod]
         public void TrainerStatTest()
         {
-            Character Player1 = BuildTrainer("Tai", "The unofficial leader of the Digidestined");
-            Assert.AreEqual(Player1["Koromon"].Stats[StatList.Strength], 10);
+            Trainer Player1 = BuildTrainer("Tai", "The unofficial leader of the Digidestined");
+            Player1.Monsters[0] = buildMonster("Koromon","The in training version of Agumon.",Player1);
+            Assert.AreEqual(Player1.Stats[StatList.Defence], 10);
+            Assert.AreEqual(Player1.Monsters[0].Name, "Koromon");
         }
 
-        public Character BuildTrainer(string name, string description)
+        private Monster buildMonster(string name, string description, Trainer assignedTrainer)
         {
-            Trainer Player1 = new Trainer(name);
-
             int[] stats = new int[StatList.ArrayLength];
             MakeStats(stats);
-            Player1.Add(name, new Character(name, description, stats));
-            return Player1;
+            Monster monster = new Monster(name, description, stats, assignedTrainer);
+            return monster;
+        }
+
+
+        public Trainer BuildTrainer(string name, string description)
+        {
+            int[] stats = new int[StatList.ArrayLength];
+            MakeStats(stats);
+            Trainer player = new Trainer(name, description, stats);
+            return player;
         }
 
         private void MakeStats(int[] stats)
