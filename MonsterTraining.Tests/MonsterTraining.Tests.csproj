@@ -51,8 +51,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TrainerInitialisationTests.cs" />
     <Compile Include="CharacterInitialisationTests.cs" />
-    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

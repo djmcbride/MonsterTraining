@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Character.cs" />
     <Compile Include="CharacterStats.cs" />
+    <Compile Include="Monster.cs" />
+    <Compile Include="Trainer.cs" />
     <Compile Include="StatusEffect.cs" />
     <Compile Include="Technique.cs" />
     <Compile Include="Program.cs" />
