@@ -8,11 +8,11 @@ namespace MonsterTraining
 {
     public class Monster : Character
     {
-        public Monster(string name, string description, int[] stats) : base(name, description, stats)
+        public Monster(string name, string description, int[] affinities, int[] trainingPoints) : base(name, description, affinities, trainingPoints)
         {
         }
 
-        public Monster(string name, string description, int[] stats, Trainer trainer) : base(name, description, stats)
+        public Monster(string name, string description, int[] affinities, int[] trainingPoints, Trainer trainer) : base(name, description, affinities, trainingPoints)
         {
             AssignedTrainer = trainer;
         }

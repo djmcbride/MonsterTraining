@@ -52,7 +52,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="TrainerInitialisationTests.cs" />
-    <Compile Include="CharacterInitialisationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

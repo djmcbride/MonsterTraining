@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AffinityList.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="StatList.cs" />
     <Compile Include="Monster.cs" />
