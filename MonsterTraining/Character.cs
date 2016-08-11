@@ -8,27 +8,33 @@ namespace MonsterTraining
 {
     public class Character
     {
-        //Constructor
-        public Character(string name, string description, double[] affinities, double[] trainingPoints)
+        /*Fields*/
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public double[] Affinities { get; set; }
+        public double[] TrainingPoints { get; set; }
+        public double[] Stats { get; set; }
+        public double[] ElementalMastery { get; set; }
+
+        //Haven't implemented yet
+        //Gender; 
+        //Weight;
+
+        /*Constructor*/
+        public Character(string name, string description, double[] affinities, double[] elementalMastery, double[] trainingPoints)
         {
             Name = name;
             Description = description;
             Affinities = affinities;
+            CalculateElementalAffinities();
             TrainingPoints = trainingPoints;
             Stats = new double[StatList.ArrayLength];
             UpdateStats();
         }
 
 
-        /*Fields*/
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public double[] Affinities { get; set; }
-        private double[] TrainingPoints { get; set; }
-        public double[] Stats { get; set; }
 
-        //Gender;
-        
+
 
         /*Subroutines*/
         public void UseTechnique(Technique technique)
@@ -44,6 +50,34 @@ namespace MonsterTraining
         public void ReceiveStatusEffect(StatusEffect status)
         {
 
+        }
+
+
+        //Affinity Calculations
+        private void CalculateElementalAffinities()
+        {
+            //Each sub-affinity is only as strong as its weakest component
+            Affinities[AffinityList.Wood] = FindLowest(Affinities[AffinityList.Earth], Affinities[AffinityList.Water]);
+            Affinities[AffinityList.Lava] = FindLowest(Affinities[AffinityList.Earth], Affinities[AffinityList.Fire]);
+            Affinities[AffinityList.Meteor] = FindLowest(Affinities[AffinityList.Earth], Affinities[AffinityList.Wind]);
+            Affinities[AffinityList.Metal] = FindLowest(Affinities[AffinityList.Earth], Affinities[AffinityList.Light]);
+            Affinities[AffinityList.Oil] = FindLowest(Affinities[AffinityList.Earth], Affinities[AffinityList.Dark]);
+            Affinities[AffinityList.Steam] = FindLowest(Affinities[AffinityList.Water], Affinities[AffinityList.Fire]);
+            Affinities[AffinityList.Mist] = FindLowest(Affinities[AffinityList.Water], Affinities[AffinityList.Wind]);
+            Affinities[AffinityList.Life] = FindLowest(Affinities[AffinityList.Water], Affinities[AffinityList.Light]);
+            Affinities[AffinityList.Corrosion] = FindLowest(Affinities[AffinityList.Water], Affinities[AffinityList.Dark]);
+            Affinities[AffinityList.Combustion] = FindLowest(Affinities[AffinityList.Fire], Affinities[AffinityList.Wind]);
+            Affinities[AffinityList.Plasma] = FindLowest(Affinities[AffinityList.Fire], Affinities[AffinityList.Light]);
+            Affinities[AffinityList.Consumption] = FindLowest(Affinities[AffinityList.Fire], Affinities[AffinityList.Dark]);
+            Affinities[AffinityList.Lightning] = FindLowest(Affinities[AffinityList.Wind], Affinities[AffinityList.Light]);
+            Affinities[AffinityList.Miasma] = FindLowest(Affinities[AffinityList.Wind], Affinities[AffinityList.Dark]);
+            Affinities[AffinityList.Balance] = FindLowest(Affinities[AffinityList.Light], Affinities[AffinityList.Dark]);
+        }
+
+        //returns the lowest number
+        private double FindLowest(double num1, double num2)
+        {
+            return (num1 < num2) ? num1 : num2; //This works just like an if else statement.
         }
 
         //Stat calculations
@@ -124,34 +158,34 @@ namespace MonsterTraining
             Stats[StatList.CriticalHitChance] = CalculateCriticalHitChance(Stats[StatList.Dexterity], Stats[StatList.Perception]);
         }
 
-        private int CalculateCriticalHitChance(int dexterity, int perception)
+        private double CalculateCriticalHitChance(double dexterity, double perception)
         {
             //The base chance to score a critical hit with any technique
-            int initialCalc = (20 + dexterity + perception) / 2;
+            double initialCalc = (20 + dexterity + perception) / 2;
             return initialCalc / 4;
         }
 
-        private int CalculateMind(int MentalStrength, int LearningRate, int PathFinding)
+        private double CalculateMind(double MentalStrength, double LearningRate, double PathFinding)
         {
             return (MentalStrength + LearningRate + PathFinding) / 3;
         }
 
-        private int CalculatePerception(int Vision, int Hearing, int Sense)
+        private double CalculatePerception(double Vision, double Hearing, double Sense)
         {
             return (Vision + Hearing + Sense) / 3;
         }
 
-        private int CalculateDexterity(int MovementAccuracy, int DodgeAbility, int DamageConsistancy, int TechniqueAccuracy)
+        private double CalculateDexterity(double MovementAccuracy, double DodgeAbility, double DamageConsistancy, double TechniqueAccuracy)
         {
             return (MovementAccuracy + DodgeAbility + DamageConsistancy + TechniqueAccuracy) / 4;
         }
 
-        private int CalculateAgility(int TopSpeed, int Acceleration, int AttackSpeed)
+        private double CalculateAgility(double TopSpeed, double Acceleration, double AttackSpeed)
         {
             return (TopSpeed + Acceleration + AttackSpeed) / 3;
         }
 
-        private int CalculateVitality(int MaxMentalStamina, int MaxPhysicalStamina, double Defence)
+        private double CalculateVitality(double MaxMentalStamina, double MaxPhysicalStamina, double Defence)
         {
             return (MaxMentalStamina + MaxPhysicalStamina + Defence) / 3;
         }
