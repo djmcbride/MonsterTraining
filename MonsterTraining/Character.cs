@@ -9,13 +9,13 @@ namespace MonsterTraining
     public class Character
     {
         //Constructor
-        public Character(string name, string description, int[] affinities, int[] trainingPoints)
+        public Character(string name, string description, double[] affinities, double[] trainingPoints)
         {
             Name = name;
             Description = description;
             Affinities = affinities;
             TrainingPoints = trainingPoints;
-            Stats = new int[StatList.ArrayLength];
+            Stats = new double[StatList.ArrayLength];
             UpdateStats();
         }
 
@@ -23,9 +23,9 @@ namespace MonsterTraining
         /*Fields*/
         public string Name { get; set; }
         public string Description { get; set; }
-        public int[] Affinities { get; set; }
-        private int[] TrainingPoints { get; set; }
-        public int[] Stats { get; set; }
+        public double[] Affinities { get; set; }
+        private double[] TrainingPoints { get; set; }
+        public double[] Stats { get; set; }
 
         //Gender;
         
@@ -56,7 +56,7 @@ namespace MonsterTraining
         private void ConvertTrainingPointsToStats()
         {
             //This method takes the training points, multiplies them by the affinity level for the relevant stat category, and then applies the result to the stat field
-            int vitalityAffinity = Affinities[AffinityList.Vitality];
+            double vitalityAffinity = Affinities[AffinityList.Vitality];
             Stats[StatList.SlashDefence] = TrainingPoints[StatList.SlashDefence] * vitalityAffinity;
             Stats[StatList.PiercingDefence] = TrainingPoints[StatList.PiercingDefence] * vitalityAffinity;
             Stats[StatList.ImpactDefence] = TrainingPoints[StatList.ImpactDefence] * vitalityAffinity;
@@ -65,28 +65,28 @@ namespace MonsterTraining
             Stats[StatList.PhysicalDefence] = TrainingPoints[StatList.PhysicalDefence] * vitalityAffinity;
             Stats[StatList.MentalDefence] = TrainingPoints[StatList.MentalDefence] * vitalityAffinity;
 
-            int strengthAffinity = Affinities[AffinityList.Strength];
+            double strengthAffinity = Affinities[AffinityList.Strength];
             Stats[StatList.MeleeStrength] = TrainingPoints[StatList.MeleeStrength] * strengthAffinity;
             Stats[StatList.BlockStrength] = TrainingPoints[StatList.BlockStrength] * strengthAffinity;
 
-            int agilityAffinity = Affinities[AffinityList.Agility];
+            double agilityAffinity = Affinities[AffinityList.Agility];
             Stats[StatList.TopSpeed] = TrainingPoints[StatList.TopSpeed] * agilityAffinity;
             Stats[StatList.Acceleration] = TrainingPoints[StatList.Acceleration] * agilityAffinity;
             Stats[StatList.AttackSpeed] = TrainingPoints[StatList.AttackSpeed] * agilityAffinity;
 
-            int dexterityAffinity = Affinities[AffinityList.Dexterity];
+            double dexterityAffinity = Affinities[AffinityList.Dexterity];
             Stats[StatList.MovementAccuracy] = TrainingPoints[StatList.MovementAccuracy] * dexterityAffinity;
             Stats[StatList.DodgeAbility] = TrainingPoints[StatList.DodgeAbility] * dexterityAffinity;
             Stats[StatList.DamageConsistancy] = TrainingPoints[StatList.DamageConsistancy] * dexterityAffinity;
             Stats[StatList.TechniqueAccuracy] = TrainingPoints[StatList.TechniqueAccuracy] * dexterityAffinity;
 
-            int mindAffinity = Affinities[AffinityList.Mind];
+            double mindAffinity = Affinities[AffinityList.Mind];
             Stats[StatList.MentalStrength] = TrainingPoints[StatList.MentalStrength] * mindAffinity;
             Stats[StatList.TaughtLearning] = TrainingPoints[StatList.TaughtLearning] * mindAffinity;
             Stats[StatList.NaturalLearning] = TrainingPoints[StatList.NaturalLearning] * mindAffinity;
             Stats[StatList.PathFinding] = TrainingPoints[StatList.PathFinding] * mindAffinity;
 
-            int perceptionAffinity = Affinities[AffinityList.Perception];
+            double perceptionAffinity = Affinities[AffinityList.Perception];
             Stats[StatList.PeripheralVision] = TrainingPoints[StatList.PeripheralVision] * perceptionAffinity;
             Stats[StatList.MainVision] = TrainingPoints[StatList.MainVision] * perceptionAffinity;
             Stats[StatList.Hearing] = TrainingPoints[StatList.Hearing] * perceptionAffinity;
@@ -94,7 +94,7 @@ namespace MonsterTraining
             Stats[StatList.TargetSense] = TrainingPoints[StatList.TargetSense] * perceptionAffinity;
         }
 
-        private void CalculateStats(int[] Stats)
+        private void CalculateStats(double[] Stats)
         {   
             /*This method calculates the stats by utilising stats that can be trained directly (i.e. those that don't depend on other stats)
              * The order in which the stats are calculated is based on tiers of dependency
@@ -151,40 +151,40 @@ namespace MonsterTraining
             return (TopSpeed + Acceleration + AttackSpeed) / 3;
         }
 
-        private int CalculateVitality(int MaxMentalStamina, int MaxPhysicalStamina, int Defence)
+        private int CalculateVitality(int MaxMentalStamina, int MaxPhysicalStamina, double Defence)
         {
             return (MaxMentalStamina + MaxPhysicalStamina + Defence) / 3;
         }
 
-        private int CalculateStrength(int MeleeStrength, int BlockStrength)
+        private double CalculateStrength(double MeleeStrength, double BlockStrength)
         {
             return (MeleeStrength + BlockStrength) / 2;
         }
 
-        private int CalculatePhysicalDefence(int impact, int piercing, int slash)
+        private double CalculatePhysicalDefence(double impact, double piercing, double slash)
         {
             return (impact + piercing + slash) / 3;
         }
 
         //Sub-Stat Calculations
         //Vitality
-        private int CalculateDefence(int PhysicalDefence, int MentalDefence)
+        private double CalculateDefence(double PhysicalDefence, double MentalDefence)
         {
             return (PhysicalDefence + MentalDefence) / 2;
         }
 
         //Perception
-        private int CalculateVision(int PeripheralVision, int MainVision)
+        private double CalculateVision(double PeripheralVision, double MainVision)
         {
             return (PeripheralVision + MainVision) / 2;
         }
-        private int CalculateSense(int PresenceSense, int TargetSense)
+        private double CalculateSense(double PresenceSense, double TargetSense)
         {
             return (PresenceSense + TargetSense) / 2;
         }
 
         //Mind
-        protected int CalculateLearningRate(int TaughtLearning, int NaturalLearning)
+        protected double CalculateLearningRate(double TaughtLearning, double NaturalLearning)
         {
             return (TaughtLearning + NaturalLearning) / 2;
         }
