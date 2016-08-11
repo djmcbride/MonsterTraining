@@ -11,7 +11,7 @@ namespace MonsterTraining.Tests
         public void TrainerStatTest()
         {
             Trainer Player1 = BuildTrainer("Tai", "The unofficial leader of the Digidestined");
-            Player1.Monsters[0] = buildMonster("Koromon","The in training version of Agumon.",Player1);
+            Player1.Monsters[0] = BuildMonster("Koromon","The in training version of Agumon.",Player1);
 
             Assert.AreEqual(Player1.Name, "Tai");
             Assert.AreEqual(Player1.Stats[StatList.Strength], 10);
@@ -22,40 +22,85 @@ namespace MonsterTraining.Tests
             Assert.AreEqual(Player1.Monsters[0].Affinities[AffinityList.Strength], 1);
         }
 
-        private Monster buildMonster(string name, string description, Trainer assignedTrainer)
+        public Monster BuildMonster(string name, string description, Trainer assignedTrainer)
         {
-            int[] trainingPoints = new int[StatList.ArrayLength];
+            double[] trainingPoints = new double[StatList.ArrayLength];
             MakeTrainingPoints(trainingPoints);
 
-            int[] affinities = new int[AffinityList.ArrayLength];
+            double[] affinities = new double[AffinityList.ArrayLength];
             MakeAffinities(affinities);
 
-            Monster monster = new Monster(name, description, affinities, trainingPoints, assignedTrainer);
+            double[] elementalMastery = new double[ElementList.ArrayLength];
+            MakeElementalMastery(elementalMastery);
+
+            Monster monster = new Monster(name, description, affinities, elementalMastery, trainingPoints, assignedTrainer);
+            return monster;
+        }
+
+        public static Monster BuildMonster(string name, string description)
+        {
+            double[] trainingPoints = new double[StatList.ArrayLength];
+            MakeTrainingPoints(trainingPoints);
+
+            double[] affinities = new double[AffinityList.ArrayLength];
+            MakeAffinities(affinities);
+
+            double[] elementalMastery = new double[ElementList.ArrayLength];
+            MakeElementalMastery(elementalMastery);
+
+            Monster monster = new Monster(name, description, affinities, elementalMastery, trainingPoints);
             return monster;
         }
 
 
         public Trainer BuildTrainer(string name, string description)
         {
-            int[] trainingPoints = new int[StatList.ArrayLength];
+            double[] trainingPoints = new double[StatList.ArrayLength];
             MakeTrainingPoints(trainingPoints);
 
-            int[] affinities = new int[AffinityList.ArrayLength];
+            double[] affinities = new double[AffinityList.ArrayLength];
             MakeAffinities(affinities);
 
-            Trainer player = new Trainer(name, description, affinities, trainingPoints);
+            double[] elementalMastery = new double[ElementList.ArrayLength];
+            MakeElementalMastery(elementalMastery);
+
+            Trainer player = new Trainer(name, description, affinities, elementalMastery, trainingPoints);
             return player;
         }
 
-        private void MakeAffinities(int[] affinities)
+        private static void MakeElementalMastery(double[] elementalMastery)
+        {
+            elementalMastery[ElementList.Air]           = 0;
+            elementalMastery[ElementList.Balance]       = 0;
+            elementalMastery[ElementList.Combustion]    = 0;
+            elementalMastery[ElementList.Consumption]   = 0;
+            elementalMastery[ElementList.Corrosion]     = 0;
+            elementalMastery[ElementList.Dark]          = 0;
+            elementalMastery[ElementList.Earth]         = 0;
+            elementalMastery[ElementList.Fire]          = 0.2;
+            elementalMastery[ElementList.Lava]          = 0;
+            elementalMastery[ElementList.Life]          = 0;
+            elementalMastery[ElementList.Light]         = 0;
+            elementalMastery[ElementList.Lightning]     = 0;
+            elementalMastery[ElementList.Metal]         = 0;
+            elementalMastery[ElementList.Meteor]        = 0;
+            elementalMastery[ElementList.Miasma]        = 0;
+            elementalMastery[ElementList.Mist]          = 0;
+            elementalMastery[ElementList.Oil]           = 0;
+            elementalMastery[ElementList.Plasma]        = 0;
+            elementalMastery[ElementList.Steam]         = 0;
+            elementalMastery[ElementList.Water]         = 0;
+            elementalMastery[ElementList.Wood]          = 0;
+        }
+
+        private static void MakeAffinities(double[] affinities)
         {
             affinities[AffinityList.Dark]         = 1;
             affinities[AffinityList.Earth]        = 1;
             affinities[AffinityList.Fire]         = 1;
             affinities[AffinityList.Light]        = 1;
-            affinities[AffinityList.Lightning]    = 1;
+            affinities[AffinityList.Wind]          = 1;
             affinities[AffinityList.Water]        = 1;
-            affinities[AffinityList.Wind]         = 1;
             affinities[AffinityList.Strength]     = 1;
             affinities[AffinityList.Vitality]     = 1;
             affinities[AffinityList.Agility]      = 1;
@@ -64,7 +109,7 @@ namespace MonsterTraining.Tests
             affinities[AffinityList.Perception]   = 1;
         }
 
-        private void MakeTrainingPoints(int[] trainingPoints)
+        private static void MakeTrainingPoints(double[] trainingPoints)
         {
             trainingPoints[StatList.SlashDefence]        = 10;
             trainingPoints[StatList.PiercingDefence]     = 10;
