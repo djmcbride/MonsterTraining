@@ -8,7 +8,7 @@ namespace MonsterTraining
 {
     public class Trainer : Character
     {
-        public Trainer(string name, string description, int[] affinities, int[] stats) : base(name, description, affinities, stats)
+        public Trainer(string name, string description, double[] affinities, double[] elementalMastery, double[] stats) : base(name, description, affinities, elementalMastery, stats)
         {
             Monsters = new Monster[6];
         }
