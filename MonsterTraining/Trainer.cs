@@ -12,6 +12,6 @@ namespace MonsterTraining
         {
             Monsters = new Monster[6];
         }
-        public Monster [] Monsters;
+        public Monster[] Monsters;
     }
 }

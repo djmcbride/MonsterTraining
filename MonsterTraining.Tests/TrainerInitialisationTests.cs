@@ -83,7 +83,7 @@ namespace MonsterTraining.Tests
             elementalMastery[ElementList.Light]         = 0;
             elementalMastery[ElementList.Lightning]     = 0;
             elementalMastery[ElementList.Metal]         = 0;
-            elementalMastery[ElementList.Metior]        = 0;
+            elementalMastery[ElementList.Meteor]        = 0;
             elementalMastery[ElementList.Miasma]        = 0;
             elementalMastery[ElementList.Mist]          = 0;
             elementalMastery[ElementList.Oil]           = 0;
@@ -99,7 +99,7 @@ namespace MonsterTraining.Tests
             affinities[AffinityList.Earth]        = 1;
             affinities[AffinityList.Fire]         = 1;
             affinities[AffinityList.Light]        = 1;
-            affinities[AffinityList.Air]          = 1;
+            affinities[AffinityList.Wind]          = 1;
             affinities[AffinityList.Water]        = 1;
             affinities[AffinityList.Strength]     = 1;
             affinities[AffinityList.Vitality]     = 1;

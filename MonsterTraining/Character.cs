@@ -21,18 +21,20 @@ namespace MonsterTraining
         //Weight;
 
         /*Constructor*/
-        public Character(string name, string description, double[] affinities, double[] elementalMAstery, double[] trainingPoints)
+        public Character(string name, string description, double[] affinities, double[] elementalMastery, double[] trainingPoints)
         {
             Name = name;
             Description = description;
             Affinities = affinities;
+            CalculateElementalAffinities();
             TrainingPoints = trainingPoints;
             Stats = new double[StatList.ArrayLength];
             UpdateStats();
         }
 
 
-        
+
+
 
         /*Subroutines*/
         public void UseTechnique(Technique technique)
@@ -48,6 +50,34 @@ namespace MonsterTraining
         public void ReceiveStatusEffect(StatusEffect status)
         {
 
+        }
+
+
+        //Affinity Calculations
+        private void CalculateElementalAffinities()
+        {
+            //Each sub-affinity is only as strong as its weakest component
+            Affinities[AffinityList.Wood] = FindLowest(Affinities[AffinityList.Earth], Affinities[AffinityList.Water]);
+            Affinities[AffinityList.Lava] = FindLowest(Affinities[AffinityList.Earth], Affinities[AffinityList.Fire]);
+            Affinities[AffinityList.Meteor] = FindLowest(Affinities[AffinityList.Earth], Affinities[AffinityList.Wind]);
+            Affinities[AffinityList.Metal] = FindLowest(Affinities[AffinityList.Earth], Affinities[AffinityList.Light]);
+            Affinities[AffinityList.Oil] = FindLowest(Affinities[AffinityList.Earth], Affinities[AffinityList.Dark]);
+            Affinities[AffinityList.Steam] = FindLowest(Affinities[AffinityList.Water], Affinities[AffinityList.Fire]);
+            Affinities[AffinityList.Mist] = FindLowest(Affinities[AffinityList.Water], Affinities[AffinityList.Wind]);
+            Affinities[AffinityList.Life] = FindLowest(Affinities[AffinityList.Water], Affinities[AffinityList.Light]);
+            Affinities[AffinityList.Corrosion] = FindLowest(Affinities[AffinityList.Water], Affinities[AffinityList.Dark]);
+            Affinities[AffinityList.Combustion] = FindLowest(Affinities[AffinityList.Fire], Affinities[AffinityList.Wind]);
+            Affinities[AffinityList.Plasma] = FindLowest(Affinities[AffinityList.Fire], Affinities[AffinityList.Light]);
+            Affinities[AffinityList.Consumption] = FindLowest(Affinities[AffinityList.Fire], Affinities[AffinityList.Dark]);
+            Affinities[AffinityList.Lightning] = FindLowest(Affinities[AffinityList.Wind], Affinities[AffinityList.Light]);
+            Affinities[AffinityList.Miasma] = FindLowest(Affinities[AffinityList.Wind], Affinities[AffinityList.Dark]);
+            Affinities[AffinityList.Balance] = FindLowest(Affinities[AffinityList.Light], Affinities[AffinityList.Dark]);
+        }
+
+        //returns the lowest number
+        private double FindLowest(double num1, double num2)
+        {
+            return (num1 < num2) ? num1 : num2; //This works just like an if else statement.
         }
 
         //Stat calculations
