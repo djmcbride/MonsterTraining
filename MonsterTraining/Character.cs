@@ -14,6 +14,7 @@ namespace MonsterTraining
         public double[] Affinities { get; set; }
         public double[] TrainingPoints { get; set; }
         public double[] Stats { get; set; }
+        public double[] StatModifiers { get; set; }
         public double[] ElementalMastery { get; set; }
 
         //Haven't implemented yet
@@ -29,6 +30,7 @@ namespace MonsterTraining
             CalculateElementalAffinities();
             TrainingPoints = trainingPoints;
             Stats = new double[StatList.ArrayLength];
+            StatModifiers = new double[StatList.ArrayLength];
             UpdateStats();
         }
 
