@@ -8,6 +8,14 @@ namespace MonsterTraining
 {
     public class Character
     {
+        /*Fields*/
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int[] Affinities { get; set; } //change this to double
+        public int[] TrainingPoints { get; set; }
+        public int[] Stats { get; set; }
+        //Gender;
+
         //Constructor
         public Character(string name, string description, int[] affinities, int[] trainingPoints)
         {
@@ -20,14 +28,6 @@ namespace MonsterTraining
         }
 
 
-        /*Fields*/
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public int[] Affinities { get; set; }
-        private int[] TrainingPoints { get; set; }
-        public int[] Stats { get; set; }
-
-        //Gender;
         
 
         /*Subroutines*/
@@ -50,7 +50,7 @@ namespace MonsterTraining
         private void UpdateStats()
         {
             ConvertTrainingPointsToStats();
-            CalculateStats(Stats);
+            CalculateStats();
         }
 
         private void ConvertTrainingPointsToStats()
@@ -94,7 +94,7 @@ namespace MonsterTraining
             Stats[StatList.TargetSense] = TrainingPoints[StatList.TargetSense] * perceptionAffinity;
         }
 
-        private void CalculateStats(int[] Stats)
+        private void CalculateStats()
         {   
             /*This method calculates the stats by utilising stats that can be trained directly (i.e. those that don't depend on other stats)
              * The order in which the stats are calculated is based on tiers of dependency

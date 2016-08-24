@@ -53,7 +53,6 @@ namespace MonsterTraining.Tests
             affinities[AffinityList.Earth]        = 1;
             affinities[AffinityList.Fire]         = 1;
             affinities[AffinityList.Light]        = 1;
-            affinities[AffinityList.Lightning]    = 1;
             affinities[AffinityList.Water]        = 1;
             affinities[AffinityList.Wind]         = 1;
             affinities[AffinityList.Strength]     = 1;

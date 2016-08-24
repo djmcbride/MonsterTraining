@@ -8,6 +8,7 @@ namespace MonsterTraining
 {
     public class Monster : Character
     {
+        Trainer AssignedTrainer;
         public Monster(string name, string description, int[] affinities, int[] trainingPoints) : base(name, description, affinities, trainingPoints)
         {
         }
@@ -16,7 +17,6 @@ namespace MonsterTraining
         {
             AssignedTrainer = trainer;
         }
-        Trainer AssignedTrainer;
 
         //Sub-routines
         public void AssignTrainer(Trainer trainer)
