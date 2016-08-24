@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="AffinityList.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="ElementList.cs" />
     <Compile Include="StatList.cs" />
     <Compile Include="Monster.cs" />
     <Compile Include="Trainer.cs" />

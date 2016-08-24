@@ -8,9 +8,11 @@ namespace MonsterTraining
 {
     public class Technique
     {
-        public Technique()
-        {
+        public string Name;
 
+        public Technique(string name)
+        {
+            Name = name;
         }
 
         public int calculateDamage()
